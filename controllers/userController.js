@@ -1,7 +1,7 @@
-const { use } = require('react');
 const User = require('../model/userModel');
 exports.updateUser = async(req,res,next)=>{
-    const{firstname,lastname,email,location} = req.body;
+   try{
+     const{firstname,lastname,email,location} = req.body;
     if(!firstname || !lastname || !email || !location){
         next('please provide all fields');
     }
@@ -19,4 +19,7 @@ exports.updateUser = async(req,res,next)=>{
     res.status(200).json({
         user,token
     })
+   }catch(error){
+    console.log(error);
+   }
 }
